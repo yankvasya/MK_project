@@ -188,7 +188,8 @@ body {
 }
 
 .player2 .character {
-    right: 60px;
+    /* right: 60px; */
+    right: 120px;
 }
 
 .player2 .character img {
