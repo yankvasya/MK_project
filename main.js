@@ -4,6 +4,7 @@ const $randomButton = document.querySelector('.button');
 const player1 = {
     player: 1,
     name: 'Scorpion',
+    winnername: 'Sonya',
     hp: 100,
     img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
     weapon: ['Arms', 'Bomb', 'Pig'],
