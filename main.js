@@ -17,8 +17,7 @@ const player1 = {
     attack,
     changeHP,
     elHP,
-    renderHP,
-    enemyAttack
+    renderHP
 }
 
 const player2 = {
@@ -27,13 +26,10 @@ const player2 = {
     hp: 100,
     img: './gif/tyan.gif',
     weapon: ['Blade', 'Katana', 'Validol'],
-    attack: function () {
-        console.log(this.name + ' Fight...');
-    },
+    attack,
     changeHP,
     elHP,
-    renderHP,
-    enemyAttack
+    renderHP
 }
 
 function attack() {
@@ -173,13 +169,16 @@ $formFight.addEventListener('submit', function (e) {
         player1.changeHP(enemy.value);
         player1.renderHP();
         console.log('Противнику удалось совершить удар, -' + enemy.value + ' HP у тебя');
-    };    
+    } else {
+        console.log('Противник попал в твою защиту, так держать');
+    }
     
     if (attack.hit != enemy.defence) {
         player2.changeHP(attack.value);
         player2.renderHP();
-    
         console.log('Твой удар прошел, -' + attack.value + ' HP у противника');
+    } else {
+        console.log('Противник защитил |' + enemy.defence + '| , удар не прошел');
     };
 
 

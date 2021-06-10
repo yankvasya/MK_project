@@ -26,6 +26,7 @@ body {
     background-color: #424542;
     margin: 0;
     padding: 0;
+    user-select: none;
 }
 
 .root {
