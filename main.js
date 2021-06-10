@@ -17,7 +17,8 @@ const player1 = {
     attack,
     changeHP,
     elHP,
-    renderHP
+    renderHP,
+    enemyAttack
 }
 
 const player2 = {
@@ -31,7 +32,8 @@ const player2 = {
     },
     changeHP,
     elHP,
-    renderHP
+    renderHP,
+    enemyAttack
 }
 
 function attack() {
@@ -70,7 +72,7 @@ function createPlayer(object) {
 
 function changeHP(num) {
     this.hp -= num;
-    console.log(this.hp)
+    // console.log(this.hp)
     if (this.hp <= 0) {
         this.hp = 0;
     }
@@ -163,6 +165,36 @@ $formFight.addEventListener('submit', function (e) {
 
         item.checked = false;
     }
-    console.log('a', attack);
-    console.log('e', enemy);
+
+    // console.log('a', attack);
+    // console.log('e', enemy);
+    
+    if (enemy.hit != attack.defence) {
+        player1.changeHP(enemy.value);
+        player1.renderHP();
+        console.log('Противнику удалось совершить удар, -' + enemy.value + ' HP у тебя');
+    };    
+    
+    if (attack.hit != enemy.defence) {
+        player2.changeHP(attack.value);
+        player2.renderHP();
+    
+        console.log('Твой удар прошел, -' + attack.value + ' HP у противника');
+    };
+
+
+    if (player1.hp === 0 || player2.hp === 0) {
+        $formFight.disabled = true;
+        createReloadButton();
+    }
+
+    if (player1.hp === 0 && player1.hp < player2.hp) {
+        $arenas.appendChild(playerWin(player2.name));
+    } else if (player2.hp === 0 && player2.hp < player1.hp) {
+        $arenas.appendChild(playerWin(player1.name));
+    } else if (player1.hp === 0 && player2.hp === 0) {
+        $arenas.appendChild(playerWin())
+    }
+
+
 })
