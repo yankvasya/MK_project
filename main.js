@@ -1,6 +1,7 @@
 const $arenas = document.querySelector('.arenas');
-// const $randomButton = document.querySelector('.button');
 const $formFight = document.querySelector('.control');
+const $chat = document.querySelector('.chat');
+
 const HIT = {
     head: 30,
     body: 25,
@@ -68,7 +69,6 @@ function createPlayer(object) {
 
 function changeHP(num) {
     this.hp -= num;
-    // console.log(this.hp)
     if (this.hp <= 0) {
         this.hp = 0;
     }
@@ -95,27 +95,6 @@ function playerWin(name) {
 function getRandom(num) {
     return Math.ceil(Math.random() * num);;
 }
-
-// $randomButton.addEventListener('click', function () {
-//     player1.changeHP(getRandom(20));
-//     player1.renderHP();
-//     player2.changeHP(getRandom(20));
-//     player2.renderHP();
-
-//     if (player1.hp === 0 || player2.hp === 0) {
-//         $randomButton.disabled = true;
-//         createReloadButton();
-//     }
-
-//     if (player1.hp === 0 && player1.hp < player2.hp) {
-//         $arenas.appendChild(playerWin(player2.name));
-//     } else if (player2.hp === 0 && player2.hp < player1.hp) {
-//         $arenas.appendChild(playerWin(player1.name));
-//     } else if (player1.hp === 0 && player2.hp === 0) {
-//         $arenas.appendChild(playerWin())
-//     }
-// })
-
 
 function createReloadButton() {
     const $reloadWrap = createElement('div', 'reloadWrap');
@@ -144,9 +123,7 @@ function enemyAttack() {
     }
 }
 
-$formFight.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const enemy = enemyAttack();
+function playerAttack() {
     const attack = {};
 
     for (let item of $formFight) {
@@ -162,26 +139,10 @@ $formFight.addEventListener('submit', function (e) {
         item.checked = false;
     }
 
-    // console.log('a', attack);
-    // console.log('e', enemy);
-    
-    if (enemy.hit != attack.defence) {
-        player1.changeHP(enemy.value);
-        player1.renderHP();
-        console.log('Противнику удалось совершить удар, -' + enemy.value + ' HP у тебя');
-    } else {
-        console.log('Противник попал в твою защиту, так держать');
-    }
-    
-    if (attack.hit != enemy.defence) {
-        player2.changeHP(attack.value);
-        player2.renderHP();
-        console.log('Твой удар прошел, -' + attack.value + ' HP у противника');
-    } else {
-        console.log('Противник защитил |' + enemy.defence + '| , удар не прошел');
-    };
+    return attack;
+}
 
-
+function showResult() {
     if (player1.hp === 0 || player2.hp === 0) {
         $formFight.disabled = true;
         createReloadButton();
@@ -194,6 +155,38 @@ $formFight.addEventListener('submit', function (e) {
     } else if (player1.hp === 0 && player2.hp === 0) {
         $arenas.appendChild(playerWin())
     }
+}
 
+function generateLogs(type, player1, player2) {
+    const text = logs[type][0].replace('[playerKick]', player1.name).replace('[playerDefence]', player2.name);
+    console.log(text);
+    // const el = '<p>' + text + '</p>';
+    const el = `<p>${text}</p>`;
+    $chat.insertAdjacentHTML('afterbegin', el);
+}
 
+$formFight.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const enemy = enemyAttack();
+    const player = playerAttack();
+
+    if (enemy.hit != player.defence) {
+        player1.changeHP(enemy.value);
+        player1.renderHP();
+        generateLogs('hit', player2, player1);
+        // console.log('Противнику удалось совершить удар, -' + enemy.value + ' HP у тебя');
+    } else {
+        console.log('Противник попал в твою защиту, так держать');
+    }
+
+    if (player.hit != enemy.defence) {
+        player2.changeHP(player.value);
+        player2.renderHP();
+        generateLogs('hit', player1, player2);
+        // console.log('Твой удар прошел, -' + player.value + ' HP у противника');
+    } else {
+        console.log('Противник защитил |' + enemy.defence + '| , удар не прошел');
+    }
+
+    showResult()
 })
