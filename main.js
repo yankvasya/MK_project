@@ -228,19 +228,19 @@ function generateLogs(type, player1, player2) {
             text = `${logs[type].replace('[time]', time).replace('[player1]', player1.name).replace('[player2]', player2.name)}`;
             break;
         case 'hit':
-            text = `${time} | ${logs[type][getRandom(logs[type].length)].replace('[playerKick]', player1.name).replace('[playerDefence]', player2.name)} -${player2.pastDmg} [${player2.hp}/100]`;
+            text = `${time} | ${logs[type][getRandom(logs[type].length) - 1].replace('[playerKick]', player1.name).replace('[playerDefence]', player2.name)} -${player2.pastDmg} [${player2.hp}/100]`;
             break;
         // hp = player1.hp || player2.hp;
         // player.hp = playerAttack().value;
         case 'defence':
-            text = `${time} | ${logs[type][getRandom(logs[type].length)].replace('[playerKick]', player2.name).replace('[playerDefence]', player1.name)} -${player1.pastDmg} [${player1.hp}/100]`;
+            text = `${time} | ${logs[type][getRandom(logs[type].length - 1)].replace('[playerKick]', player2.name).replace('[playerDefence]', player1.name)} -${player1.pastDmg} [${player1.hp}/100]`;
             break;
         // let el = `<p>${time} | ${text} ${-player.hp} [${hp}/100]</p>`;
         case 'draw':
             text = `${time} ${logs[type]}`;
             break;
         case 'end':
-            text = `${time} ${logs[type][getRandom(logs[type].length)].replace('playerWins', player1.name).replace('playerLose', player2.name)}`;
+            text = `${time} ${logs[type][getRandom(logs[type].length - 1)].replace('playerWins', player1.name).replace('playerLose', player2.name)}`;
             break;
 
     }
