@@ -112,6 +112,8 @@ function changeHP(num) {
     if (this.hp <= 0) {
         this.hp = 0;
     }
+
+    this.pastDmg = num;
     return num;
 }
 
@@ -213,10 +215,6 @@ function showResult() {
         generateLogs('draw', player2, player1);
     }
 }
-
-// function lastDMG() {
-
-// }
 
 function generateLogs(type, player1, player2) {
     // const normalize = (num) => (num.toString().lenght > 1 ? num : `0${num}`);
