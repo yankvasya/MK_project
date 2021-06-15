@@ -2,7 +2,7 @@ import {$arenas, $formFight, createPlayer} from './creates.js';
 import { player1, player2 } from './players.js';
 import { enemyAttack, playerAttack } from './attack.js'
 import {generateLogs } from './logs.js'
-import {showResult} from './result.js'
+import { showResult } from './result.js'
     
 $arenas.appendChild(createPlayer(player1));
 $arenas.appendChild(createPlayer(player2));

@@ -3,7 +3,15 @@ const $formFight = document.querySelector('.control');
 const $chat = document.querySelector('.chat');
 
 
-function createElement(tag, className) {
+// function createElement(tag, className) {
+//     const $tag = document.createElement(tag);
+//     if (className) {
+//         $tag.classList.add(className);
+//     }
+//     return $tag;
+// }
+
+const createElement = (tag, className) => {
     const $tag = document.createElement(tag);
     if (className) {
         $tag.classList.add(className);
@@ -11,7 +19,27 @@ function createElement(tag, className) {
     return $tag;
 }
 
-function createPlayer(object) {
+// function createPlayer(object) {
+//     const $player = createElement('div', 'player' + object.player);
+//     const $progressbar = createElement('div', 'progressbar');
+//     const $name = createElement('div', 'name');
+//     const $character = createElement('div', 'character');
+//     const $img = createElement('img');
+//     const $life = createElement('div', 'life');
+
+//     $player.appendChild($progressbar);
+//     $progressbar.appendChild($life);
+//     $progressbar.appendChild($name);
+//     $player.appendChild($character);
+//     $character.appendChild($img);
+
+//     $life.style.width = `${object.hp}%`;
+//     $name.innerHTML = object.name;
+//     $img.src = object.img;
+//     return $player;
+// }
+
+const createPlayer = (object) =>{
     const $player = createElement('div', 'player' + object.player);
     const $progressbar = createElement('div', 'progressbar');
     const $name = createElement('div', 'name');
@@ -31,7 +59,22 @@ function createPlayer(object) {
     return $player;
 }
 
-function createReloadButton() {
+
+
+// function createReloadButton() {
+//     const $reloadWrap = createElement('div', 'reloadWrap');
+//     const $buttonRestart = createElement('button', 'button');
+//     $buttonRestart.innerText = 'Restart';
+
+//     $buttonRestart.addEventListener('click', function () {
+//         window.location.reload();
+//     });
+
+//     $reloadWrap.appendChild($buttonRestart);
+//     $arenas.appendChild($reloadWrap);
+// }
+
+const createReloadButton = () => {
     const $reloadWrap = createElement('div', 'reloadWrap');
     const $buttonRestart = createElement('button', 'button');
     $buttonRestart.innerText = 'Restart';
