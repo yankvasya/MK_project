@@ -29,7 +29,26 @@ const enemyAttack = () => {
     }
 }
 
-function playerAttack() {
+// function playerAttack() {
+//     const attack = {};
+
+//     for (let item of $formFight) {
+//         if (item.checked && item.name === 'hit') {
+//             attack.value = getRandom(HIT[item.value]);
+//             attack.hit = item.value;
+//         }
+
+//         if (item.checked && item.name === 'defence') {
+//             attack.defence = item.value;
+//         }
+
+//         item.checked = false;
+//     }
+//     console.dir(attack.value);
+//     return attack;
+// }
+
+const playerAttack = () => {
     const attack = {};
 
     for (let item of $formFight) {
