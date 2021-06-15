@@ -1,3 +1,6 @@
+import { player1, player2 } from './players.js';
+import getRandom from './utils.js'
+
 const $arenas = document.querySelector('.arenas');
 const $formFight = document.querySelector('.control');
 const $chat = document.querySelector('.chat');
@@ -49,35 +52,6 @@ const logs = {
 };
 
 const ATTACK = ['head', 'body', 'foot'];
-
-const player1 = {
-    player: 1,
-    name: 'IWillKillAllTitans',
-    hp: 100,
-    img: './gif/eren.gif',
-    weapon: ['Arms', 'Bomb', 'Pig'],
-    changeHP,
-    elHP,
-    renderHP,
-    pastDmg: 0
-}
-
-const player2 = {
-    player: 2,
-    name: 'Anime-Tyan',
-    hp: 100,
-    img: './gif/tyan.gif',
-    weapon: ['Blade', 'Katana', 'Validol'],
-    changeHP,
-    elHP,
-    renderHP,
-    pastDmg: 0
-}
-
-// function attack() {
-//     console.log(`${this.name}Fight...`);
-// }
-
 
 function createElement(tag, className) {
     const $tag = document.createElement(tag);
@@ -133,10 +107,6 @@ function playerWin(name) {
         $winTitle.innerText = `DRAW`;
     }
     return $winTitle;
-}
-
-function getRandom(num) {
-    return Math.ceil(Math.random() * num);
 }
 
 function createReloadButton() {
