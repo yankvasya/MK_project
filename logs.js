@@ -41,7 +41,7 @@ const logs = {
     draw: 'Ничья - это тоже победа!'
 };
 
-const { start, end, hit, defence, draw } = logs;
+// const { start, end, hit, defence, draw } = logs;
 
 function generateLogs(type, player1, player2) {
     let text = '';
