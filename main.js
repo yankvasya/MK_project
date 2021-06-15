@@ -242,7 +242,8 @@ function generateLogs(type, player1, player2) {
         case 'end':
             text = `${time} ${logs[type][getRandom(logs[type].length - 1)].replace('playerWins', player1.name).replace('playerLose', player2.name)}`;
             break;
-
+        default:
+            text = 'Ошибка 404';
     }
     // $chat.insertAdjacentHTML('afterbegin', el);
     // $chat.insertAdjacentHTML('afterbegin', sg);
@@ -258,7 +259,7 @@ $formFight.addEventListener('submit', function (e) {
     const enemy = enemyAttack();
     const player = playerAttack();
 
-    if (enemy.hit != player.defence) {
+    if (enemy.hit !== player.defence) {
         player1.changeHP(enemy.value);
         player1.renderHP();
         generateLogs('hit', player2, player1);
@@ -266,7 +267,7 @@ $formFight.addEventListener('submit', function (e) {
         generateLogs('defence', player2, player1);
     }
 
-    if (player.hit != enemy.defence) {
+    if (player.hit !== enemy.defence) {
         player2.changeHP(player.value);
         player2.renderHP();
         generateLogs('hit', player1, player2);
