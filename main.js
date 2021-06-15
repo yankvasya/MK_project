@@ -136,7 +136,7 @@ function playerWin(name) {
 }
 
 function getRandom(num) {
-    return Math.ceil(Math.random() * num);;
+    return Math.ceil(Math.random() * num);
 }
 
 function createReloadButton() {
