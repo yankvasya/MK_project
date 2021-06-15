@@ -1,6 +1,9 @@
-export const ATTACK = ['head', 'body', 'foot'];
+import { getRandom } from "./utils.js";
+import { $formFight } from "./creates.js";
 
-export const HIT = {
+const ATTACK = ['head', 'body', 'foot'];
+
+const HIT = {
     head: 30,
     body: 25,
     foot: 20,
@@ -35,4 +38,4 @@ function playerAttack() {
     return attack;
 }
 
-export {}
+export {ATTACK, HIT, enemyAttack, playerAttack};

@@ -1,4 +1,7 @@
-export const logs = {
+import { $chat } from './creates.js';
+import { getRandom } from './utils.js'
+
+const logs = {
     start: 'Часы показывали [time], когда [player1] и [player2] бросили вызов друг другу.',
     end: [
         'Результат удара [playerWins]: [playerLose] - труп',
@@ -65,4 +68,4 @@ function generateLogs(type, player1, player2) {
     $chat.insertAdjacentHTML('afterbegin', el);
 }
 
-export {generateLogs};
+export {logs, generateLogs};

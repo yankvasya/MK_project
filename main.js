@@ -1,14 +1,15 @@
+import {$arenas, $formFight, createPlayer} from './creates.js';
 import { player1, player2 } from './players.js';
-import getRandom from './utils.js'
-import { changeHP, elHP, renderHP } from './hp.js'
-import {generateLogs, logs} from './logs.js'
+import { enemyAttack, playerAttack } from './attack.js'
+import {generateLogs } from './logs.js'
+import {showResult} from './result.js'
+    
+$arenas.appendChild(createPlayer(player1));
+$arenas.appendChild(createPlayer(player2));
 
 if (document.onload = 'true') {
     generateLogs('start', player1, player2);
 }
-
-$arenas.appendChild(createPlayer(player1));
-$arenas.appendChild(createPlayer(player2));
 
 $formFight.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -32,3 +33,5 @@ $formFight.addEventListener('submit', function (e) {
     }
     showResult()
 })
+
+export {$formFight};

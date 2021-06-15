@@ -1,3 +1,7 @@
+import { player1, player2 } from './players.js';
+import { $formFight, createReloadButton, $arenas, createElement } from './creates.js'
+import { generateLogs } from './logs.js'
+
 function playerWin(name) {
     const $winTitle = createElement('div', 'winTitle');
     if (name) {

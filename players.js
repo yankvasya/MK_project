@@ -1,6 +1,6 @@
-import {changeHP, elHP, renderHP} from './hp.js'
+import {changeHP, elHP, renderHP} from './hp.js';
 
-export const player1 = {
+const player1 = {
     player: 1,
     name: 'IWillKillAllTitans',
     hp: 100,
@@ -12,7 +12,7 @@ export const player1 = {
     pastDmg: 0
 }
 
-export const player2 = {
+const player2 = {
     player: 2,
     name: 'Anime-Tyan',
     hp: 100,
@@ -23,3 +23,5 @@ export const player2 = {
     renderHP,
     pastDmg: 0
 }
+
+export {player1, player2};

@@ -1,6 +1,6 @@
-export const $arenas = document.querySelector('.arenas');
-export const $formFight = document.querySelector('.control');
-export const $chat = document.querySelector('.chat');
+const $arenas = document.querySelector('.arenas');
+const $formFight = document.querySelector('.control');
+const $chat = document.querySelector('.chat');
 
 
 function createElement(tag, className) {
@@ -43,4 +43,7 @@ function createReloadButton() {
     $reloadWrap.appendChild($buttonRestart);
     $arenas.appendChild($reloadWrap);
 }
+
+export {$arenas,createPlayer, $formFight, $chat, createElement, createReloadButton};
+
 
