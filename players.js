@@ -1,4 +1,4 @@
-
+import {changeHP, elHP, renderHP} from './hp.js'
 
 export const player1 = {
     player: 1,
