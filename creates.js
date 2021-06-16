@@ -10,8 +10,9 @@ const createElement = (tag, className) => {
     return $tag;
 }
 
-const createPlayer = (object) =>{
-    const $player = createElement('div', 'player' + object.player);
+// надо не забыть тут деструкт
+const createPlayer = (player, hp, name, img) => {
+    const $player = createElement('div', `player${player}`);
     const $progressbar = createElement('div', 'progressbar');
     const $name = createElement('div', 'name');
     const $character = createElement('div', 'character');
@@ -24,9 +25,9 @@ const createPlayer = (object) =>{
     $player.appendChild($character);
     $character.appendChild($img);
 
-    $life.style.width = `${object.hp}%`;
-    $name.innerHTML = object.name;
-    $img.src = object.img;
+    $life.style.width = `${hp}%`;
+    $name.innerHTML = name;
+    $img.src = img;
     return $player;
 }
 
@@ -43,6 +44,6 @@ const createReloadButton = () => {
     $arenas.appendChild($reloadWrap);
 }
 
-export {$arenas,createPlayer, $formFight, $chat, createElement, createReloadButton};
+export { $arenas, createPlayer, $formFight, $chat, createElement, createReloadButton };
 
 
