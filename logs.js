@@ -1,3 +1,6 @@
+import { $chat } from './creates.js';
+import { getRandom } from './utils.js'
+
 const logs = {
     start: 'Часы показывали [time], когда [player1] и [player2] бросили вызов друг другу.',
     end: [
@@ -37,3 +40,61 @@ const logs = {
     ],
     draw: 'Ничья - это тоже победа!'
 };
+
+// const { start, end, hit, defence, draw } = logs;
+
+// function generateLogs(type, player1, player2) {
+//     let text = '';
+//     const time = `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
+//     switch (type) {
+//         case 'start':
+//             text = `${logs[type].replace('[time]', time).replace('[player1]', player1.name).replace('[player2]', player2.name)}`;
+//             break;
+//         case 'hit':
+//             text = `${time} | ${logs[type][getRandom(logs[type].length) - 1].replace('[playerKick]', player1.name).replace('[playerDefence]', player2.name)} -${player2.pastDmg} [${player2.hp}/100]`;
+//             break;
+//         case 'defence':
+//             text = `${time} | ${logs[type][getRandom(logs[type].length - 1)].replace('[playerKick]', player2.name).replace('[playerDefence]', player1.name)} -${player1.pastDmg} [${player1.hp}/100]`;
+//             break;
+//         case 'draw':
+//             text = `${time} ${logs[type]}`;
+//             break;
+//         case 'end':
+//             text = `${time} ${logs[type][getRandom(logs[type].length - 1)].replace('playerWins', player1.name).replace('playerLose', player2.name)}`;
+//             break;
+//         default:
+//             text = 'Ошибка 404';
+//             break;
+//     }
+//     const el = `<p>${text}</p>`;
+//     $chat.insertAdjacentHTML('afterbegin', el);
+// }
+
+const generateLogs = (type, player1, player2) => {
+    let text = '';
+    const time = `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
+    switch (type) {
+        case 'start':
+            text = `${logs[type].replace('[time]', time).replace('[player1]', player1.name).replace('[player2]', player2.name)}`;
+            break;
+        case 'hit':
+            text = `${time} | ${logs[type][getRandom(logs[type].length) - 1].replace('[playerKick]', player1.name).replace('[playerDefence]', player2.name)} -${player2.pastDmg} [${player2.hp}/100]`;
+            break;
+        case 'defence':
+            text = `${time} | ${logs[type][getRandom(logs[type].length - 1)].replace('[playerKick]', player2.name).replace('[playerDefence]', player1.name)} -${player1.pastDmg} [${player1.hp}/100]`;
+            break;
+        case 'draw':
+            text = `${time} ${logs[type]}`;
+            break;
+        case 'end':
+            text = `${time} ${logs[type][getRandom(logs[type].length - 1)].replace('playerWins', player1.name).replace('playerLose', player2.name)}`;
+            break;
+        default:
+            text = 'Ошибка 404';
+            break;
+    }
+    const el = `<p>${text}</p>`;
+    $chat.insertAdjacentHTML('afterbegin', el);
+}
+
+export {logs, generateLogs};
