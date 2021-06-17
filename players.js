@@ -1,5 +1,3 @@
-// import { changeHP, elHP, renderHP } from './hp.js';
-import { player1, player2 } from './main.js';
 import { createElement } from './utils.js'
 
 class Player {
@@ -11,9 +9,6 @@ class Player {
         this.hp = props.hp;
         this.img = props.img;
         this.pastDmg = props.pastDmg;
-        // this.changeHP = props.changeHP;
-        // this.elHP = props.elHP;
-        // this.renderHP = props.renderHP;
         this.selector = `player${this.player}`;
         this.rootSelector = props.rootSelector;
     }
