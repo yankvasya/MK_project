@@ -1,5 +1,6 @@
-import { player1, player2 } from './players.js';
-import { $formFight, createReloadButton, $arenas, createElement } from './creates.js'
+import { player1, player2 } from './main.js';
+import { $formFight, $arenas } from './creates.js'
+import { createElement, createReloadButton } from './utils.js'
 import { generateLogs } from './logs.js'
 
 const playerWin = (name) => {

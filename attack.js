@@ -1,13 +1,6 @@
-import { getRandom } from "./utils.js";
-import { $formFight } from "./creates.js";
-
-const ATTACK = ['head', 'body', 'foot'];
-
-const HIT = {
-    head: 30,
-    body: 25,
-    foot: 20,
-}
+import { getRandom } from './utils.js';
+import { $formFight } from './creates.js';
+import { HIT, ATTACK } from  './constants.js'
 
 const enemyAttack = () => {
     const hit = ATTACK[getRandom(3) - 1];
