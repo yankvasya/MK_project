@@ -1,4 +1,4 @@
-import { $arenas } from './creates.js'
+import $arenas from './game.js'
 
 export const getRandom = (num) => {
     return Math.ceil(Math.random() * num);

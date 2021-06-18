@@ -1,8 +1,8 @@
-import { $chat } from './creates.js';
+import $chat from './game.js';
 import { getRandom } from './utils.js'
-import {logs} from './constants.js'
+import { logs } from './constants.js'
 
-const generateLogs = (type, {name}, {name: playerName2, hp, pastDmg}) => {
+generateLogs = (type, { name }, { name: playerName2, hp, pastDmg }) => {
     let text = '';
     const time = `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
     switch (type) {
@@ -29,4 +29,4 @@ const generateLogs = (type, {name}, {name: playerName2, hp, pastDmg}) => {
     $chat.insertAdjacentHTML('afterbegin', el);
 }
 
-export {logs, generateLogs};
+export default generateLogs ;
