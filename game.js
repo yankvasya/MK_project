@@ -1,6 +1,6 @@
 // import { $formFight } from './creates.js';
-import generateLogs from './logs.js'
-import Player from './players.js'
+import generateLogs from './logs.js';
+import Player from './players.js';
 // import { enemyAttack, playerAttack } from './attack.js'
 // import { showResult } from './result.js'
 

@@ -1,6 +1,7 @@
 import $chat from './game.js';
-import { getRandom } from './utils.js'
-import { logs } from './constants.js'
+import { getRandom } from './utils.js';
+import { logs } from './constants.js';
+// import Game from '.game.js'
 
 generateLogs = (type, { name }, { name: playerName2, hp, pastDmg }) => {
     let text = '';
@@ -29,4 +30,4 @@ generateLogs = (type, { name }, { name: playerName2, hp, pastDmg }) => {
     $chat.insertAdjacentHTML('afterbegin', el);
 }
 
-export default generateLogs ;
+export default generateLogs;
