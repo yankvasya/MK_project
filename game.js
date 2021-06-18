@@ -1,5 +1,8 @@
 import Player from './players.js';
 import { logs } from './constants.js';
+import { HIT, ATTACK } from './constants.js'
+import { getRandom, createElement } from './utils.js';
+// import { ATTACK, HIT, enemyAttack, playerAttack } from './attack.js';
 
 class Game {
     constructor() {
@@ -89,6 +92,77 @@ class Game {
         this.$chat.insertAdjacentHTML('afterbegin', el);
     }
 
+    enemyAttack = () => {
+        const hit = ATTACK[getRandom(3) - 1];
+        const defence = ATTACK[getRandom(3) - 1];
+        return {
+            value: getRandom(HIT[hit]),
+            hit,
+            defence
+        }
+    }
+
+    playerAttack = () => {
+        const attack = {};
+
+        for (let item of this.$formFight) {
+            if (item.checked && item.name === 'hit') {
+                attack.value = getRandom(HIT[item.value]);
+                attack.hit = item.value;
+            }
+
+            if (item.checked && item.name === 'defence') {
+                attack.defence = item.value;
+            }
+
+            item.checked = false;
+        }
+        console.dir(attack.value);
+        return attack;
+    }
+       
+    createReloadButton = () => {
+        const $reloadWrap = createElement('div', 'reloadWrap');
+        const $buttonRestart = createElement('button', 'button');
+        $buttonRestart.innerText = 'Restart';
+
+        $buttonRestart.addEventListener('click', function () {
+            window.location.reload();
+        });
+
+        $reloadWrap.appendChild($buttonRestart);
+        this.$arenas.appendChild($reloadWrap);
+    }
+
+    showResult = () => {
+        if (this.player1.hp === 0 || this.player2.hp === 0) {
+            this.$formFight.disabled = true;
+            this.createReloadButton();
+        }
+
+        if (this.player1.hp === 0 && this.player1.hp < this.player2.hp) {
+            this.$arenas.appendChild(this.playerWin(this.player2.name));
+            this.generateLogs('end', this.player2, this.player1);
+
+        } else if (this.player2.hp === 0 && this.player2.hp < this.player1.hp) {
+            this.$arenas.appendChild(this.playerWin(this.player1.name));
+            this.generateLogs('end', this.player1, this.player2)
+
+        } else if (this.player1.hp === 0 && this.player2.hp === 0) {
+            // this.$arenas.appendChild(this.playerWin());
+            this.generateLogs('draw', this.player2, this.player1);
+        }
+    }
+    
+    playerWin = (name) => {
+        const $winTitle = createElement('div', 'winTitle');
+        if (name) {
+            $winTitle.innerText = `${name} win`;
+        } else {
+            $winTitle.innerText = `DRAW`;
+        }
+        return this.$winTitle;
+    }
 }
 
 export default Game;
