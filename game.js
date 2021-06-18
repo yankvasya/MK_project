@@ -120,7 +120,7 @@ class Game {
         console.dir(attack.value);
         return attack;
     }
-       
+
     createReloadButton = () => {
         const $reloadWrap = createElement('div', 'reloadWrap');
         const $buttonRestart = createElement('button', 'button');
@@ -146,7 +146,7 @@ class Game {
 
         } else if (this.player2.hp === 0 && this.player2.hp < this.player1.hp) {
             this.$arenas.appendChild(this.playerWin(this.player1.name));
-            this.generateLogs('end', this.player1, this.player2)
+            this.generateLogs('end', this.player1, this.player2);
 
         } else if (this.player1.hp === 0 && this.player2.hp === 0) {
             // this.$arenas.appendChild(this.playerWin());
