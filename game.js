@@ -161,7 +161,7 @@ class Game {
         } else {
             $winTitle.innerText = `DRAW`;
         }
-        return this.$winTitle;
+        return $winTitle;
     }
 }
 
