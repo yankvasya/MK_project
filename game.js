@@ -39,6 +39,7 @@ class Game {
         return body;
     }
 
+
     start = async () => {
         const players = await this.getPlayers();
         const p1 = JSON.parse(localStorage.getItem('player1'));
