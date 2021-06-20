@@ -4,39 +4,26 @@ import { HIT, ATTACK } from './constants.js'
 import { getRandom, createElement } from './utils.js';
 
 
-// let player1;
-// let player2;
+let player1;
+let player2;
 
 // class Game {
-//     getPlayers = async () => {
-//         const body = fetch('https://reactmarathon-api.herokuapp.com/api/mk/players').then(res => res.json());
-//         return body;
-//     }
 
-//     start = async () => {
-//         const players = await this.getPlayers();
-//         console.log(players);
-//         const p1 = players[getRandom(players.length) - 1];
-//         const p2 = players[getRandom(players.length) - 1];
-//         console.log(p1, p2);
 
-//         player1 = new Player({
-//             ...p1,
-//             player: 1,
-//             rootSelector: 'arenas',
-//         });
-//         player2 = new Player({
-//             ...p2,
-//             player: 2,
-//             rootSelector: 'arenas',
-//         });
-//         player1.createPlayer();
-//         player2.createPlayer();
+// start = async () => {
+//     const players = await this.getPlayers(); 
+//     console.log(players);
+// const p1 = players[getRandom(players.length) - 1];
+// const p2 = players[getRandom(players.length) - 1];
+//     console.log(p1, p2);
+
+
+//     player1.createPlayer();
+//     player2.createPlayer();
 //     }
 // }
 
 // const game = new Game();
-
 
 
 class Game {
@@ -44,29 +31,32 @@ class Game {
         this.$arenas = document.querySelector('.arenas');
         this.$formFight = document.querySelector('.control');
         this.$chat = document.querySelector('.chat');
-
-        this.player1 = new Player({
-            player: 1,
-            name: 'IWillKillAllTitans',
-            hp: 100,
-            img: './gif/eren.gif',
-            weapon: ['Arms', 'Bomb', 'Pig'],
-            pastDmg: 0,
-            rootSelector: 'arenas'
-        })
-
-        this.player2 = new Player({
-            player: 2,
-            name: 'Anime-Tyan',
-            hp: 100,
-            img: './gif/tyan.gif',
-            weapon: ['Blade', 'Katana', 'Validol'],
-            pastDmg: 0,
-            rootSelector: 'arenas'
-        })
     }
 
-    start = () => {
+
+    getPlayers = async () => {
+        const body = fetch('https://reactmarathon-api.herokuapp.com/api/mk/players').then(res => res.json());
+        return body;
+    }
+
+    start = async () => {
+        const players = await this.getPlayers();
+        const p1 = players[getRandom(players.length) - 1];
+        const p2 = players[getRandom(players.length) - 1];
+        console.log(p1, p2);
+
+        this.player1 = new Player({
+            ...p1,
+            player: 1,
+            rootSelector: 'arenas',
+        });
+
+        this.player2 = new Player({
+            ...p2,
+            player: 2,
+            rootSelector: 'arenas',
+        });
+
         this.player1.createPlayer();
         this.player2.createPlayer();
 
