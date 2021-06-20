@@ -41,7 +41,7 @@ class Game {
 
     start = async () => {
         const players = await this.getPlayers();
-        const p1 = players[getRandom(players.length) - 1];
+        const p1 = JSON.parse(localStorage.getItem('player1'));
         const p2 = players[getRandom(players.length) - 1];
         console.log(p1, p2);
 
@@ -149,7 +149,8 @@ class Game {
         $buttonRestart.innerText = 'Restart';
 
         $buttonRestart.addEventListener('click', function () {
-            window.location.reload();
+            window.history.back();
+            // window.location.reload();
         });
 
         $reloadWrap.appendChild($buttonRestart);
