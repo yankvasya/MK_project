@@ -2,39 +2,62 @@ import Player from './players.js';
 import { logs } from './constants.js';
 import { HIT, ATTACK } from './constants.js'
 import { getRandom, createElement } from './utils.js';
-// import { ATTACK, HIT, enemyAttack, playerAttack } from './attack.js';
+
+
+let player1;
+let player2;
+
+// class Game {
+
+
+// start = async () => {
+//     const players = await this.getPlayers(); 
+//     console.log(players);
+// const p1 = players[getRandom(players.length) - 1];
+// const p2 = players[getRandom(players.length) - 1];
+//     console.log(p1, p2);
+
+
+//     player1.createPlayer();
+//     player2.createPlayer();
+//     }
+// }
+
+// const game = new Game();
+
 
 class Game {
     constructor() {
-        // start = () => {
         this.$arenas = document.querySelector('.arenas');
         this.$formFight = document.querySelector('.control');
         this.$chat = document.querySelector('.chat');
-
-        this.player1 = new Player({
-            player: 1,
-            name: 'IWillKillAllTitans',
-            hp: 100,
-            img: './gif/eren.gif',
-            weapon: ['Arms', 'Bomb', 'Pig'],
-            pastDmg: 0,
-            rootSelector: 'arenas'
-        })
-
-        this.player2 = new Player({
-            player: 2,
-            name: 'Anime-Tyan',
-            hp: 100,
-            img: './gif/tyan.gif',
-            weapon: ['Blade', 'Katana', 'Validol'],
-            pastDmg: 0,
-            rootSelector: 'arenas'
-        })
-        // }
-        // this.start() = start();
     }
 
-    start = () => {
+
+    getPlayers = async () => {
+        const body = fetch('https://reactmarathon-api.herokuapp.com/api/mk/player/choose').then(res => res.json());
+        return body;
+    }
+
+
+    start = async () => {
+        const players = await this.getPlayers();
+        const p1 = JSON.parse(localStorage.getItem('player1'));
+        const p2 = players;
+        console.log(p1, p2);
+
+        this.player1 = new Player({
+            ...p1,
+            player: 1,
+            rootSelector: 'arenas',
+        });
+
+        this.player2 = new Player({
+            ...p2,
+            player: 2,
+            rootSelector: 'arenas',
+        });
+
         this.player1.createPlayer();
         this.player2.createPlayer();
 
@@ -48,7 +71,7 @@ class Game {
             if (hitEnemy !== defence) {
                 this.player1.changeHP(valueEnemy);
                 this.player1.renderHP();
-                this.generateLogs('hit', this.player2, this.player1, valueEnemy);
+                this.generateLogs('hit', this.player2, this.player1, value);
             } else {
                 this.generateLogs('defence', this.player2, this.player1);
             }
@@ -76,7 +99,7 @@ class Game {
                 text = `${time} | ${logs[type][getRandom(logs[type].length) - 1].replace('[playerKick]', name).replace('[playerDefence]', playerName2)} -${pastDmg} [${hp}/100]`;
                 break;
             case 'defence':
-                text = `${time} | ${logs[type][getRandom(logs[type].length - 1)].replace('[playerKick]', playerName2).replace('[playerDefence]', name)} -${pastDmg} [${hp}/100]`;
+                text = `${time} | ${logs[type][getRandom(logs[type].length - 1)].replace('[playerKick]', name).replace('[playerDefence]', playerName2)}  [${hp}/100]`;
                 break;
             case 'draw':
                 text = `${time} ${logs[type]}`;
@@ -127,7 +150,8 @@ class Game {
         $buttonRestart.innerText = 'Restart';
 
         $buttonRestart.addEventListener('click', function () {
-            window.location.reload();
+            window.history.back();
+            // window.location.reload();
         });
 
         $reloadWrap.appendChild($buttonRestart);
@@ -149,11 +173,10 @@ class Game {
             this.generateLogs('end', this.player1, this.player2);
 
         } else if (this.player1.hp === 0 && this.player2.hp === 0) {
-            // this.$arenas.appendChild(this.playerWin());
             this.generateLogs('draw', this.player2, this.player1);
         }
     }
-    
+
     playerWin = (name) => {
         const $winTitle = createElement('div', 'winTitle');
         if (name) {
